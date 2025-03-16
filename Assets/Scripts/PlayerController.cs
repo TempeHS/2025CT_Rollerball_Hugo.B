@@ -47,6 +47,7 @@ public class PlayerController : MonoBehaviour
          if (count >= 11)
        {
            winTextObject.SetActive(true);
+           Destroy(GameObject.FindGameObjectWithTag("Enemy"));
        }
    }
  // FixedUpdate is called once per fixed frame-rate frame.
@@ -67,4 +68,15 @@ public class PlayerController : MonoBehaviour
            SetCountText();
        }
    }
+private void OnCollisionEnter(Collision collision)
+{
+   if (collision.gameObject.CompareTag("Enemy"))
+   {
+       // Destroy the current object
+       Destroy(gameObject); 
+       // Update the winText to display "You Lose!"
+       winTextObject.gameObject.SetActive(true);
+       winTextObject.GetComponent<TextMeshProUGUI>().text = "You Lose!";
+   }
+}
 }
