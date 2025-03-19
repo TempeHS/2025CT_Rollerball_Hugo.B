@@ -1,4 +1,4 @@
-using System.Collections;
+ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -30,7 +30,7 @@ public class PlayerController : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         SetCountText();
     }
- 
+
  // This function is called when a move input is detected.
  void OnMove(InputValue movementValue)
     {
@@ -54,10 +54,15 @@ public class PlayerController : MonoBehaviour
  private void FixedUpdate() 
     {
  // Create a 3D movement vector using the X and Y inputs.
-        Vector3 movement = new Vector3 (movementX, 0.0f, movementY);
+        float moveHorizontal = Input.GetAxis("Horizontal");
+        float moveVertical = Input.GetAxis ("Vertical");
+        float movementZ = 0.0f;
+        Vector3 movement = new Vector3 (movementX, movementZ, movementY);
+        rb.AddForce (movement * speed * Time.deltaTime);
 
  // Apply force to the Rigidbody to move the player.
         rb.AddForce(movement * speed); 
+        
     }
      private void OnTriggerEnter (Collider other) 
    {
