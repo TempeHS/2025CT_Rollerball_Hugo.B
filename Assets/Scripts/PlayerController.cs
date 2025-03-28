@@ -48,6 +48,7 @@ public class PlayerController : MonoBehaviour
        {
            winTextObject.SetActive(true);
            Destroy(GameObject.FindGameObjectWithTag("Enemy"));
+           Destroy(GameObject.FindGameObjectWithTag("Kanye"));
        }
    }
  // FixedUpdate is called once per fixed frame-rate frame.
@@ -76,6 +77,14 @@ public class PlayerController : MonoBehaviour
 private void OnCollisionEnter(Collision collision)
 {
    if (collision.gameObject.CompareTag("Enemy"))
+   {
+       // Destroy the current object
+       Destroy(gameObject); 
+       // Update the winText to display "You Lose!"
+       winTextObject.gameObject.SetActive(true);
+       winTextObject.GetComponent<TextMeshProUGUI>().text = "are you sure?";
+   }
+   if (collision.gameObject.CompareTag("Kanye"))
    {
        // Destroy the current object
        Destroy(gameObject); 

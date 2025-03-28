@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Pickup
   - Enemy
+  - Kanye
+  - luk
   layers:
   - Default
   - TransparentFX
